@@ -1,0 +1,324 @@
+.title-block {
+  padding: 200px 0 40px;
+  background-color: $black;
+  color: $white;
+  text-transform: uppercase;
+  h1 {
+    margin: 0;
+    font-size: 170px;
+    letter-spacing: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    .icon-rhombus-fill {
+      font-size: 20px;
+      &:last-child {display: none}
+    }
+  }
+}
+
+.galleriesContainer {
+  background-color: $black;
+  color: $white;
+  .galleriesBlock {
+    margin-top: 10vh;
+    overflow: hidden;
+    &:nth-child(2n) {
+      .tns-outer {
+        margin-left: auto;
+        margin-right: 25vw;
+      }
+    }
+
+    .galleryText {
+      position: absolute;
+      left: -20vw;
+      top: 50%;
+      text-transform: uppercase;
+      z-index: 2;
+      @include translateY(-50%);
+      h3 {
+        font-size: 144px;
+      }
+      p {
+        font-size: 28px;
+        font-weight: normal;
+      }
+    }
+    .tns-outer {
+      width: 65vw;
+      margin-left: 25vw;
+      margin-right: auto;
+    }
+    .tns-ovh {
+      overflow: visible;
+    }
+    .gallerySlider {
+      .slide {
+        width: 70vw;
+        height: 40vw;
+
+        &.w-0 {width: 0 !important}
+        .bg_image {
+          width: 100%;
+          height: 100%;
+          @include bg-cover();
+        }
+        img {
+          height: 100%;
+          width: auto;
+        }
+        .slideText {
+          position: absolute;
+          left: 5vw;
+          top: 50%;
+          text-transform: uppercase;
+          @include translateY(-50%);
+        }
+      }
+
+      &.gallerySliderSecond {
+        .galleryText {
+          left: auto;
+          right: -18vw;
+        }
+        .slide {
+          .slideText {
+            left: auto;
+            right: 5vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+.gallery-page {
+  height: 100vh;
+  overflow: hidden;
+  .galleryText {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    z-index: 2;
+    @include translateY(-50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    span {
+      margin-top: -20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .galleryTextBlock {
+      font-family: $extraFont;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      text-transform: uppercase;
+      a, span {
+        margin-top: 0;
+        font-size: 34px;
+        line-height: 1;
+      }
+      a {
+        color: lightgrey;
+      }
+    }
+  }
+  .galleryBottomText {
+    position: absolute;
+    left: 5%;
+    bottom: 10vh;
+    z-index: 2;
+
+    .btn-back {
+      span:last-child {
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .tns-outer {
+    width: 65%;
+    margin-left: 25%;
+    margin-right: 10%;
+  }
+  .tns-ovh {
+    overflow: visible;
+  }
+  #gallerySlider {
+    height: 100vh;
+    width: 100%;
+    padding: 180px 25vw 80px 35vw;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    @include transition();
+
+    //прячем полосу прокрутки
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0;
+      display: none !important;
+      background: transparent;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      height: 100%;
+      width: 25vw;
+      overflow: visible;
+      .imgWrap {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: visible;
+        @include transition();
+        img {
+          width: 100%;
+          height: auto;
+          flex: 0 0 120%;
+          @include transition();
+        }
+        &.fullScreen {
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.8);
+          transform: matrix(1,0,0,1,0,0) !important;
+          z-index: 300;
+          img {
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain;
+          }
+        }
+      }
+      .slideText {
+        position: absolute;
+        left: 5vw;
+        top: 50%;
+        text-transform: uppercase;
+        @include translateY(-50%);
+      }
+    }
+  }
+}
+
+.body-galleries {
+  background-color: $black;
+}
+
+// это необходимо, чтобы в safari страница не подпрыгивала
+.body-gallery {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+@media screen {
+  @media (max-width: 1400px) {
+    .title-block {
+      padding-top: 140px;
+      h1 {
+        font-size: 96px;
+        .icon-rhombus-fill {
+          font-size: 10px;
+        }
+      }
+    }
+    .galleriesContainer {
+      .galleriesBlock {
+        .galleryText {
+          h3 {
+            font-size: 80px;
+          }
+        }
+      }
+    }
+    .gallery-page {
+      #gallerySlider {
+        padding-top: 120px;
+      }
+    }
+  }
+  @media (max-width: 960px) {
+    .title-block {
+      padding-top: 100px;
+      h1 {
+        font-size: 64px;
+        .icon-rhombus-fill {
+          font-size: 8px;
+        }
+      }
+    }
+    .galleriesContainer {
+      .galleriesBlock {
+        .galleryText {
+          h3 {
+            font-size: 48px;
+          }
+          p {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+    .gallery-page {
+      #gallerySlider {
+        padding-top: 80px;
+        padding-left: 20vw;
+        .slide {
+          width: 50vw;
+        }
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    .title-block {
+      h1 {
+        font-size: 26px;
+        .icon-rhombus-fill {
+          font-size: 4px;
+        }
+      }
+    }
+    .galleriesContainer {
+      .galleriesBlock {
+        .galleryText {
+          h3 {
+            font-size: 22px;
+          }
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .gallery-page {
+      #gallerySlider {
+        padding-top: 80px;
+        .slide {
+          width: 75vw;
+        }
+      }
+    }
+  }
+}

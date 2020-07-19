@@ -1,0 +1,493 @@
+#indexSlider {
+  background-color: $black;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  @include transition();
+
+  //прячем полосу прокрутки
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0;
+    display: none !important;
+    background: transparent;
+  }
+
+  .slide {
+    flex: 0 0 auto;
+    width: 100vw;
+    height: 100vh;
+    color: $white;
+    overflow: hidden;
+
+    .bg-image {
+      @include transition(1.5s);
+      @include absolute-full();
+      @include bg-cover();
+      @include scale(1.4);
+      //z-index: -1;
+      &:before {
+        content: '';
+        display: block;
+        @include absolute-full();
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .slideText {
+      @include transition(2s);
+
+      &.left {
+        left: 5%;
+        top: 200px;
+        width: 40vw;
+        position: absolute;
+        z-index: 5;
+        overflow-y: auto;
+
+        @include translateX(10vw);
+
+        h2 {
+          font-size: 36px;
+          font-weight: normal;
+        }
+      }
+      &.center {
+        left: 50%;
+        top: 50%;
+        width: 80%;
+        @include translate(-40%, -50%);
+        position: absolute;
+        z-index: 5;
+        overflow-y: auto;
+
+        h2 {
+          font-size: 36px;
+          font-weight: normal;
+        }
+      }
+      &.right {
+        right: 5%;
+        top: 200px;
+        bottom: 10vh;
+        width: 30vw;
+        padding: 4vw;
+        text-align: center;
+        position: absolute;
+        z-index: 5;
+        overflow: hidden;
+
+        //@include translateX(10vw);
+        @include scale(1.4);
+
+        h2 {
+          font-size: 15px;
+          font-weight: normal;
+          letter-spacing: 2px;
+          color: $brown;
+          text-transform: uppercase;
+        }
+        p {
+          margin: 20px 0;
+        }
+        a {
+          font-weight: bold;
+          display: inline-block;
+          overflow: hidden;
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            @include transition();
+            @include translateX(-100%);
+          }
+          &:hover {
+            &:after {
+              @include translateX(0);
+            }
+          }
+        }
+
+        &.white {
+          background-color: $white;
+          color: $black;
+          a:after {
+            background-color: $black;
+          }
+        }
+        &.dark {
+          background-color: $black;
+          color: $white;
+          a:after {
+            background-color: $white;
+          }
+        }
+      }
+      &.contacts {
+        padding: 150px 0 10vh;
+        max-height: 100vh;
+        overflow-y: auto;
+        @include translateX(20vw);
+
+        h2 {
+          width: 100%;
+          max-width: 500px;
+          margin: 20px auto 5vw;
+          font-size: 15px;
+          font-weight: normal;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          text-align: center;
+        }
+        #map {
+          width: 100%;
+          height: 45vh;
+          margin: 40px 0 0;
+        }
+      }
+
+      .eventBlock {
+        h3 {
+          font-family: $extraFont;
+        }
+        p {
+          margin: 10px 0;
+        }
+        overflow: hidden;
+        .evnt-divider {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 100px;
+          max-width: 100%;
+          height: 3px;
+          border-top: 1px solid $brown;
+          border-bottom: 1px solid $brown;
+          @include translateX(-50%);
+        }
+      }
+    }
+    .slideBottom {
+      position: absolute;
+      left: 0;
+      bottom: 100px;
+      width: 100%;
+      @include transition(2s);
+      @include translateX(10vw);
+    }
+    .textContainer {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+
+      &.between {
+        justify-content: space-between;
+      }
+      &.center {
+        justify-content: center;
+        .textBlock:first-child {
+          margin-right: 5vw;
+        }
+      }
+      .textBlock {
+        .blockTitle {
+          position: absolute;
+          left: 0;
+          top: -30px;
+          text-transform: uppercase;
+          font-size: 10px;
+          font-weight: 500;
+        }
+        .blockText {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-transform: uppercase;
+          font-size: 18px;
+          font-weight: 500;
+        }
+        &.copyright {
+          .blockText {
+            align-items: flex-end;
+          }
+        }
+      }
+    }
+    .slideTextWrap {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      opacity: 0;
+      @include transition();
+      //@include transition(0.7s, 1.2s);
+      //@include translateX(50px);
+    }
+    .slideImg {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-end;
+      img {
+        height: auto;
+        max-width: 40vw;
+        margin-right: 3vw;
+
+        @include transition(2s);
+        &:first-child {
+          @include translateX(10vw);
+        }
+        &:nth-child(2) {
+          @include translateX(20vw);
+        }
+      }
+    }
+
+    &.tns-slide-active {
+      .bg-image {
+        @include scale(1);
+      }
+      .slideText {
+        &.left, &.contacts {
+          @include translateX(0);
+        }
+        &.right {
+          @include scale(1);
+        }
+        &.center {
+          @include translate(-50%, -50%);
+        }
+      }
+      .slideTextWrap {
+        opacity: 1;
+        @include translateX(0);
+      }
+      .slideBottom {
+        @include translateX(0);
+      }
+      .slideImg {
+        img {
+          @include translateX(0);
+        }
+      }
+    }
+  }
+  h1,h2,h3,h4,h5{
+    font-family: $mainFont;
+    //font-family: $extraFont;
+  }
+}
+
+.tns-controls {
+  display: none;
+}
+.tns-nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    flex: 1 1 auto;
+    background-color: transparent;
+    @include transition();
+
+    &.tns-nav-active, &.filled {
+      background-color: $red;
+    }
+
+    &:first-child {
+      display: none;
+    }
+  }
+}
+
+.slide-next {
+  cursor: pointer;
+}
+
+// это необходимо, чтобы в safari страница не подпрыгивала
+.body-index {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+@media screen {
+  @media (max-width: 1400px) {
+    #indexSlider {
+      .slide {
+        .slideText {
+          &.left {
+            top: 140px;
+            width: 50vw;
+          }
+          &.right {
+            top: 140px;
+            bottom: 80px;
+            width: 35vw;
+            padding: 3vw 5vw;
+            p {
+              margin: 5px 0;
+            }
+          }
+          &.contacts {
+            padding-top: 120px;
+            #map {
+              margin-top: 20px;
+              height: 40vh;
+            }
+          }
+        }
+        .textContainer {
+          .textBlock {
+            .blockTitle {
+              font-size: 9px;
+            }
+            .blockText {
+              font-size: 14px;
+            }
+          }
+        }
+        .slideBottom {
+          bottom: 70px;
+        }
+      }
+    }
+  }
+  @media (max-width: 1100px) {
+    #indexSlider {
+      .slide {
+        .slideText {
+          &.left {
+            width: 80vw;
+          }
+          &.right {
+            width: 45vw;
+          }
+        }
+        .textContainer {
+          flex-wrap: wrap;
+          .textBlock {
+            flex: 1 1 33.33333%;
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 960px) {
+    #indexSlider {
+      .slide {
+        .slideText {
+          &.left {
+            top: 80px;
+            h2 {
+              font-size: 26px;
+            }
+          }
+          &.center {
+            top: 40%;
+            h2 {
+              font-size: 26px;
+            }
+          }
+          &.right {
+            width: 90%;
+            padding: 10%;
+          }
+          &.contacts {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            overflow-y: auto;
+          }
+        }
+        .textContainer {
+          .textBlock {
+            .blockText {
+              font-size: 12px;
+            }
+          }
+        }
+        .slideBottom {
+          bottom: 40px;
+        }
+      }
+    }
+    @media (orientation: landscape) {
+      #indexSlider {
+        .slide {
+          .slideText {
+            &.right {
+              padding: 5% 6%;
+              h2 {
+                margin-top: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    #indexSlider {
+      .slide {
+        .slideText {
+          .eventBlock {
+            h3 {
+              font-size: 18px;
+            }
+          }
+          &.contacts {
+            padding-bottom: 140px;
+            max-height: 100%;
+            #map {
+              height: 60vh;
+            }
+          }
+        }
+        .textContainer {
+          .textBlock {
+            flex: 1 1 100%;
+            .blockTitle {
+              top: -12px;
+            }
+            &.copyright {
+              margin-top: 0;
+              .blockText {
+                align-items: flex-start;
+              }
+            }
+          }
+        }
+        .slideBottom {
+          bottom: 60px;
+        }
+      }
+    }
+  }
+}

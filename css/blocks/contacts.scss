@@ -1,0 +1,76 @@
+.contacts-page {
+  height: 100vh;
+  padding: 200px 0 10vh;
+  background-color: $black;
+  color: $white;
+  overflow-y: auto;
+
+  .textContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    &.between {
+      justify-content: space-between;
+    }
+    &.center {
+      justify-content: center;
+      .textBlock:first-child {
+        margin-right: 5vw;
+      }
+    }
+    .textBlock {
+      .blockTitle {
+        position: absolute;
+        left: 0;
+        top: -30px;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: 500;
+      }
+      .blockText {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  h2 {
+    font-family: $mainFont;
+    max-width: 500px;
+    margin: 20px auto 5vw;
+    font-size: 15px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  #map {
+    width: 100%;
+    height: 45vh;
+    margin: 40px 0 0;
+  }
+}
+
+.map-marker {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: $black;
+}
+@media screen {
+  @media (max-width: 1400px) {
+    .contacts-page {
+      padding-top: 120px;
+    }
+  }
+  @media (max-width: 960px) {
+    .contacts-page {
+      padding-top: 80px;
+    }
+  }
+}
